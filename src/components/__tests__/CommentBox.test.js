@@ -1,10 +1,15 @@
 import React from "react";
 import { mount } from "enzyme";
 import CommentBox from "../CommentBox";
+import Roots from "../../Roots";
 
 let wrapper;
 beforeEach(() => {
-  wrapper = mount(<CommentBox />);
+  wrapper = mount(
+    <Roots>
+      <CommentBox />
+    </Roots>
+  );
 });
 afterEach(() => {
   wrapper.unmount();
@@ -23,14 +28,13 @@ describe("the textarea", () => {
     wrapper.update();
   });
   it("textarea text change", () => {
-    expect(wrapper.state("comment")).toEqual(comment);
+    expect(wrapper.find("textarea").prop("value")).toEqual(comment);
   });
   it("when form is submitted text area form should be empty", () => {
     wrapper.find("form").simulate("submit", {
       preventDefault: () => {}
     });
     wrapper.update();
-    expect(wrapper.state("comment")).toBe("");
     expect(wrapper.find("textarea").prop("value")).toEqual("");
   });
 });
