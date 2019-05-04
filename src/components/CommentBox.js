@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { addComment } from "../redux/actions";
+import { addComment, fetchComments } from "../redux/actions";
 class CommentBox extends Component {
   state = {
     comment: ""
@@ -28,13 +28,17 @@ class CommentBox extends Component {
             <button>Submit comment</button>
           </div>
         </form>
+        <button onClick={() => this.props.fetchComments()}>
+          Fetch Comments
+        </button>
       </div>
     );
   }
 }
 const mapDispatchToProps = dispatch => {
   return {
-    addComment: comment => dispatch(addComment(comment))
+    addComment: comment => dispatch(addComment(comment)),
+    fetchComments: () => dispatch(fetchComments())
   };
 };
 export default connect(
