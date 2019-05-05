@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { addComment, fetchComments } from "../redux/actions";
+import requireAuth from "./requireAuth";
 class CommentBox extends Component {
   state = {
     comment: ""
   };
+
   handleComment = e => {
     const comment = e.target.value;
     this.setState(() => ({
@@ -35,6 +37,7 @@ class CommentBox extends Component {
     );
   }
 }
+
 const mapDispatchToProps = dispatch => {
   return {
     addComment: comment => dispatch(addComment(comment)),
@@ -44,4 +47,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   null,
   mapDispatchToProps
-)(CommentBox);
+)(requireAuth(CommentBox));

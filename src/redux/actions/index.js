@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ADD_COMMENT, FETCH_COMMENTS } from "./types";
+import { ADD_COMMENT, FETCH_COMMENTS, CHANGE_AUTH } from "./types";
 
 export const addComment = comment => {
   return {
@@ -16,5 +16,11 @@ export const fetchComments = async () => {
   return {
     type: FETCH_COMMENTS,
     payload: response.data
+  };
+};
+export const changeAuth = isLoggedIn => {
+  return {
+    type: CHANGE_AUTH,
+    payload: isLoggedIn
   };
 };
