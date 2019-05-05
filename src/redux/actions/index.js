@@ -8,14 +8,12 @@ export const addComment = comment => {
   };
 };
 
-export const fetchComments = async () => {
-  const response = await axios.get(
-    "https://jsonplaceholder.typicode.com/comments"
-  );
+export const fetchComments = () => {
+  const response = axios.get("https://jsonplaceholder.typicode.com/comments");
 
   return {
     type: FETCH_COMMENTS,
-    payload: response.data
+    payload: response
   };
 };
 export const changeAuth = isLoggedIn => {

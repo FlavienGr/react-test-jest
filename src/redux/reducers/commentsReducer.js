@@ -5,7 +5,7 @@ export default (state = [], action) => {
     case ADD_COMMENT:
       return [...state, action.payload];
     case FETCH_COMMENTS:
-      const filtered = action.payload.reduce(
+      const filtered = action.payload.data.reduce(
         (accumulator, currentValue) => accumulator.concat(currentValue.name),
         []
       );
